@@ -93,6 +93,8 @@ function nodePairUnordered( a, b){
 
 function jqueryLoad(){
 
+	console.log("JQuery load");
+
 	var pairs = [];
 	var chain = [];
 	var link = 0;
@@ -101,7 +103,7 @@ function jqueryLoad(){
 	rootuser = $('.reply-lvl-0').find('.profileCardAvatarThumb').find('a').text().trim();
 	rootuser = rootuser.substr( rootuser.search(":")+2 );
 
-	//console.log(rootuser);
+	console.log(rootuser);
 	
 	chain[link] = rootuser;
 	link++;
@@ -109,7 +111,7 @@ function jqueryLoad(){
 	// Loop through root replies
 	$('#forumMessagesContainer').find('.db-reply-block').each( function(index){
 	
-		//console.log('db-reply-block');
+		console.log('db-reply-block');
 	
 		var name;
 		var lvl;
@@ -143,12 +145,12 @@ function jqueryLoad(){
 		
 	});
 
-/*	
+	
 	// See what node list we got
 	for (var z=0; z<nodes.length; z++){
 		console.log(nodes[z]);
 	}
-*/
+
 	
 
 	var found = false;	
@@ -156,7 +158,7 @@ function jqueryLoad(){
 	// Add up how many times pairs occur
 	for (var x=0; x<pairs.length; x++){
 	
-		//console.log( pairs[x] );
+		console.log( pairs[x] );
 	
 		found = false;
 		
@@ -175,12 +177,12 @@ function jqueryLoad(){
 		}
 	}
 	
-/*	
+	
 	// Show pair count
 	for (var y=0; y<rel.length; y++){
 		console.log( rel[y] + ' x ' + count[y] );
 	}
-*/	
+	
 	
 	// Add the canvas to the page
 	var $div = $('<div />').appendTo('body');
@@ -195,7 +197,7 @@ function jqueryLoad(){
 	
 	// Display the nodes
 	nga=document.createElement('script');
-	nga.setAttribute('src','https://10.6.1.64/ng/dist/vis.js');
+	nga.setAttribute('src','https://10.6.1.50/ng/bb-forum-nodegraph/dist/vis.js');
 	nga.onload=nga.onreadystatechange=function(){ visLoaded(); };
 	document.head.appendChild(nga);
 }

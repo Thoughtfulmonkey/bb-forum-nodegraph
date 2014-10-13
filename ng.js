@@ -235,8 +235,8 @@ function visLoaded(){
 		edges: visedges,
 	};
 	var options = {
-		width: '600px',
-		height: '400px'
+		width: '800px',
+		height: '600px'
 	};
 	var graph = new vis.Network(container, data, options);
 	

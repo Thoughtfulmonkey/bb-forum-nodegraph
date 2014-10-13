@@ -197,7 +197,7 @@ function jqueryLoad(){
 	
 	// Display the nodes
 	nga=document.createElement('script');
-	nga.setAttribute('src','https://10.6.1.50/ng/bb-forum-nodegraph/dist/vis.js');
+	nga.setAttribute('src','https://raw.githubusercontent.com/Thoughtfulmonkey/bb-forum-nodegraph/master/dist/vis.js');
 	nga.onload=nga.onreadystatechange=function(){ visLoaded(); };
 	document.head.appendChild(nga);
 }

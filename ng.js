@@ -8,14 +8,14 @@ var count = [];		// occurance of relationships
 function trigger(){
 
 /*
-	$('.journalContainer').attr('id','journal-target');
+	$j('.journalContainer').attr('id','journal-target');
 	
-	$('#blogArchive').find('> li').each(function(index){
-		var%20s=$(this).find('> a').text();
-		if(s!=""){var u=$(this).find('a:nth-child(2)').attr('href');
+	$j('#blogArchive').find('> li').each(function(index){
+		var%20s=$j(this).find('> a').text();
+		if(s!=""){var u=$j(this).find('a:nth-child(2)').attr('href');
 		$.ajax({url:u}).done(function(html){
-			var f=$(html).find('.journalContainer').html();
-			$(f).appendTo('#journal-target')
+			var f=$j(html).find('.journalContainer').html();
+			$j(f).appendTo('#journal-target')
 		}
 	);
 */
@@ -93,6 +93,10 @@ function nodePairUnordered( a, b){
 
 function jqueryLoad(){
 
+	// Use non-conflict mode for JQuery
+	//  Since Blackboard forums include a $ function
+	var $j = jQuery.noConflict();
+
 	//console.log("JQuery load");
 
 	var pairs = [];
@@ -100,7 +104,7 @@ function jqueryLoad(){
 	var link = 0;
 	var lastLevel = 0;
 
-	rootuser = $('.reply-lvl-0').find('.profileCardAvatarThumb').find('a').text().trim();
+	rootuser = $j('.reply-lvl-0').find('.profileCardAvatarThumb').find('a').text().trim();
 	rootuser = rootuser.substr( rootuser.search(":")+2 );
 
 	//console.log(rootuser);
@@ -109,7 +113,7 @@ function jqueryLoad(){
 	link++;
 	
 	// Loop through root replies
-	$('#forumMessagesContainer').find('.db-reply-block').each( function(index){
+	$j('#forumMessagesContainer').find('.db-reply-block').each( function(index){
 	
 		console.log('db-reply-block');
 	
@@ -118,11 +122,11 @@ function jqueryLoad(){
 	
 		// Loop through all replies
 		// - build post-reply pairs
-		$(this).find('.db-message-wrapper').each( function(index){
+		$j(this).find('.db-message-wrapper').each( function(index){
 		
-			name = $(this).find('.profileCardAvatarThumb').text().trim();	// extract name
+			name = $j(this).find('.profileCardAvatarThumb').text().trim();	// extract name
 			
-			lvl = $(this).attr('class');									// find list of classes
+			lvl = $j(this).attr('class');									// find list of classes
 			lvl = lvl.substr( lvl.search('reply-lvl-')+10, 1);				// extract level number from list
 			
 			
@@ -185,7 +189,7 @@ function jqueryLoad(){
 */	
 	
 	// Add the canvas to the page
-	var $div = $('<div />').appendTo('body');
+	var $div = $j('<div />').appendTo('body');
 	$div.attr('id', 'viewport');
 	$div.css('width', '800');
 	$div.css('height', '600');

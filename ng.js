@@ -115,7 +115,7 @@ function jqueryLoad(){
 	// Loop through root replies
 	$j('#forumMessagesContainer').find('.db-reply-block').each( function(index){
 	
-		console.log('db-reply-block');
+		//console.log('db-reply-block');
 	
 		var name;
 		var lvl;

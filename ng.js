@@ -93,7 +93,7 @@ function nodePairUnordered( a, b){
 
 function jqueryLoad(){
 
-	console.log("JQuery load");
+	//console.log("JQuery load");
 
 	var pairs = [];
 	var chain = [];
@@ -103,7 +103,7 @@ function jqueryLoad(){
 	rootuser = $('.reply-lvl-0').find('.profileCardAvatarThumb').find('a').text().trim();
 	rootuser = rootuser.substr( rootuser.search(":")+2 );
 
-	console.log(rootuser);
+	//console.log(rootuser);
 	
 	chain[link] = rootuser;
 	link++;
@@ -145,12 +145,12 @@ function jqueryLoad(){
 		
 	});
 
-	
+/*	
 	// See what node list we got
 	for (var z=0; z<nodes.length; z++){
 		console.log(nodes[z]);
 	}
-
+*/
 	
 
 	var found = false;	
@@ -158,7 +158,7 @@ function jqueryLoad(){
 	// Add up how many times pairs occur
 	for (var x=0; x<pairs.length; x++){
 	
-		console.log( pairs[x] );
+		//console.log( pairs[x] );
 	
 		found = false;
 		
@@ -177,22 +177,23 @@ function jqueryLoad(){
 		}
 	}
 	
-	
+/*	
 	// Show pair count
 	for (var y=0; y<rel.length; y++){
 		console.log( rel[y] + ' x ' + count[y] );
 	}
-	
+*/	
 	
 	// Add the canvas to the page
 	var $div = $('<div />').appendTo('body');
 	$div.attr('id', 'viewport');
-	$div.css('width', '600');
-	$div.css('height', '400');
+	$div.css('width', '800');
+	$div.css('height', '600');
 	$div.css('background-color', 'white');
 	$div.css('position', 'absolute');
-	$div.css('top', '10px');
-	$div.css('left', '10px');
+	$div.css('bottom', '10px');
+	$div.css('right', '10px');
+	$div.css('border', '1px solid #222222');
 	$div.css('z-index', '100');
 	
 	// Display the nodes
@@ -213,7 +214,7 @@ function visLoaded(){
 		visnodes[z]['label'] = nodes[z];
 		visnodes[z]['shape'] = 'box';
 	}
-	console.log(visnodes);
+	//console.log(visnodes);
 	
 	var visedges = [];
 	for (var y=0; y<rel.length; y++){
@@ -225,26 +226,7 @@ function visLoaded(){
 		visedges[y]['arrowScaleFactor'] = '0.2';
 		//console.log( rel[y] + ' x ' + count[y] );
 	}
-	console.log(visedges);
-
-	/*	
-	
-	var nodes = [
-		{id: 1, label: 'Node 1'},
-		{id: 2, label: 'Node 2'},
-		{id: 3, label: 'Node 3'},
-		{id: 4, label: 'Node 4'},
-		{id: 5, label: 'Node 5'}
-	];
-
-	// create an array with edges
-	var edges = [
-		{from: 1, to: 2},
-		{from: 1, to: 3},
-		{from: 2, to: 4},
-		{from: 2, to: 5}
-	];
-	*/
+	//console.log(visedges);
 	
 	// create a graph
 	var container = document.getElementById('viewport');

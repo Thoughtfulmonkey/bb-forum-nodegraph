@@ -276,7 +276,22 @@ function visLoaded(){
 	};
 	var options = {
 		width: '800px',
-		height: '690px'
+		height: '600px',
+		physics: {
+			barnesHut: {
+				enabled: true,
+				gravitationalConstant: -2000,
+				centralGravity: 0.1,
+				springLength: 40,
+				springConstant: 0.005,
+				damping: 0.09
+			}
+		},
+		edges: {
+			color:{
+				highlight: 'red'
+			}
+		}
 	};
 	var graph = new vis.Network(container, data, options);
 	

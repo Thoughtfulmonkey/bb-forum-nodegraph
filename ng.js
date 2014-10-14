@@ -104,9 +104,17 @@ function jqueryLoad(){
 	var link = 0;
 	var lastLevel = 0;
 
-	rootuser = $j('.reply-lvl-0').find('.profileCardAvatarThumb').find('a').text().trim();
-	rootuser = rootuser.substr( rootuser.search(":")+2 );
-
+	// Find root post
+	rootuser = $j('.reply-lvl-0').find('.profileCardAvatarThumb');
+	
+	// Different extractions depending on whether root user has a Bb profile
+	if ( $j(rootuser).find('a').length > 0 ){
+		rootuser = $j(rootuser).find('a').text().trim();
+		rootuser = rootuser.substr( rootuser.search(":")+2 );
+	}else{
+		rootuser = $j(rootuser).text().trim();
+	}
+	
 	//console.log(rootuser);
 	
 	chain[link] = rootuser;
@@ -124,7 +132,15 @@ function jqueryLoad(){
 		// - build post-reply pairs
 		$j(this).find('.db-message-wrapper').each( function(index){
 		
-			name = $j(this).find('.profileCardAvatarThumb').text().trim();	// extract name
+			name = $j(this).find('.profileCardAvatarThumb');				// find name block
+		
+			if ( $j(name).find('a').length > 0 ){							// make allowance for profile links or not
+				name = $j(name).find('a').text().trim();
+				name = name.substr( name.search(":")+2 );
+			}else{
+				name = $j(name).text().trim();
+			}
+
 			
 			lvl = $j(this).attr('class');									// find list of classes
 			lvl = lvl.substr( lvl.search('reply-lvl-')+10, 1);				// extract level number from list
@@ -200,9 +216,29 @@ function jqueryLoad(){
 	$div.css('border', '1px solid #222222');
 	$div.css('z-index', '100');
 	
+	// Add a close button
+	var $close = $j('<div />').appendTo('body');
+	$close.attr('id', 'closer');
+	$close.css('width', '50px');
+	$close.css('height', '20px');
+	$close.css('padding', '3px');
+	$close.css('text-align', 'center');
+	$close.css('background-color', '#ffeeee');
+	$close.css('position', 'absolute');
+	$close.css('bottom', '610px');
+	$close.css('right', '15px');
+	$close.css('border', '1px solid #222222');
+	$close.css('z-index', '99');
+	$close.text("close");
+	
+	$close.click( function(){
+		$j('#viewport').remove();
+		$j('#closer').remove();
+	});
+	
 	// Display the nodes
 	nga=document.createElement('script');
-	nga.setAttribute('src','https://raw.githubusercontent.com/Thoughtfulmonkey/bb-forum-nodegraph/master/dist/vis.js');
+	nga.setAttribute('src','https://rawgit.com/Thoughtfulmonkey/bb-forum-nodegraph/master/dist/vis.js');
 	nga.onload=nga.onreadystatechange=function(){ visLoaded(); };
 	document.head.appendChild(nga);
 }
@@ -240,7 +276,7 @@ function visLoaded(){
 	};
 	var options = {
 		width: '800px',
-		height: '600px'
+		height: '690px'
 	};
 	var graph = new vis.Network(container, data, options);
 	
